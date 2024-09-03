@@ -18,5 +18,5 @@ def get_mongo_client():
     except Exception as e:
         raise Exception(
             "The following error occurred: ", e)
-#{os.environ["DB_USER"]}
+
 
