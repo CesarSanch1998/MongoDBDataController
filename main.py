@@ -6,10 +6,12 @@ from os import getcwd, path
 # from db.connection import *
 from os import getcwd
 from routers.get_data import get_data
+from routers.insert_data import insert_data
 
 app = FastAPI()
 
 app.include_router(get_data)
+app.include_router(insert_data)
 
 origins = [
     "http://localhost",
