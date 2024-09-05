@@ -19,7 +19,7 @@ def get_all_data(api_key: str = None):
         return HTTPException(status_code=401, detail="Invalid API key")
     _book = []
     client = get_mongo_client()
-    result = client["oztvtest"]["movies"].find({}, {"_id": 0}) # por errores trae todos los campos excepto el _id
+    result = client[os.environ["DB_NAME"]][os.environ["DB_COLLECTION"]].find({}, {"_id": 0}) # por errores trae todos los campos excepto el _id
     for i in result:
         _book.append(i)
     client.close()
@@ -36,7 +36,7 @@ def get_all_data(category:str, api_key: str = None):
         return HTTPException(status_code=401, detail="Invalid API key")
     _book = []
     client = get_mongo_client()
-    result = client["oztvtest"]["movies"].find({"genres": f"{category}"}, {"_id": 0}) # por errores trae todos los campos excepto el _id
+    result = client[os.environ["DB_NAME"]][os.environ["DB_COLLECTION"]].find({"genres": f"{category}"}, {"_id": 0}) # por errores trae todos los campos excepto el _id
     # print results
     for i in result:
         _book.append(i)
@@ -53,7 +53,7 @@ def get_all_data(id_movie:str, api_key: str = None):
         return HTTPException(status_code=401, detail="Invalid API key")
     _book = []
     client = get_mongo_client()
-    result = client["oztvtest"]["movies"].find({"id_moviedb": f"{id_movie}"}, {"_id": 0}) # por errores trae todos los campos excepto el _id
+    result = client[os.environ["DB_NAME"]][os.environ["DB_COLLECTION"]].find({"id_moviedb": f"{id_movie}"}, {"_id": 0}) # por errores trae todos los campos excepto el _id
     # print results
     for i in result:
         _book.append(i)

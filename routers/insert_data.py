@@ -35,8 +35,8 @@ async def insert_movie_data(data: insert_movies,api_key: str = None):
     }
     client = get_mongo_client()
     
-    insert = client["oztvtest"]["movies"].insert_one(data_to_insert)
-    return_id = client["oztvtest"]["movies"].find_one(
+    insert = client[os.environ["DB_NAME"]][os.environ["DB_COLLECTION"]].insert_one(data_to_insert)
+    return_id = client[os.environ["DB_NAME"]][os.environ["DB_COLLECTION"]].find_one(
         {"id_moviedb": data.id_movied}
     )
     response = {f"Correct insert in db by _id : {return_id['_id']}"}
